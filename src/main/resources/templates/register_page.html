@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    @import url("https://fonts.googleapis.com/css?family=Montserrat:400,400i,700");
+
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+    @import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600,700|Source+Sans+Pro:400,600,700&display=swap");
+
+    body{
+        background: rgba(200, 200, 255, 0.2);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+    }
+
+    .container{
+        background: white;
+        box-shadow: rgba(0, 0, 0, .2) 0 0 20px;
+        width: 500px;
+        max-width: 50%;
+        height: 1000px;
+        border-radius: 8px;
+        transition: 0.3s;
+
+    }
+
+    .header-title{
+        background: #2b2684;
+        border-radius: 8px 8px 0 0;
+        border-bottom: 1px solid rgba(0, 0, 0, .2);
+        padding: 10px;
+        text-align: center;
+        font-family: "Source Sans Pro", sans-serif;
+        color: rgba(255, 255, 255, .9);
+    }
+
+    #form{
+        padding: 60px 80px 40px 70px;
+    }
+
+    .formContent{
+        margin:   25px ;
+        position: relative;
+    }
+
+    .formContent label{
+        font-family: Montserrat, sans-serif;
+        display: inline-block;
+        margin: 0 0 8px 0;
+    }
+
+    .formContent input{
+        background: none;
+        width: 400px;
+        padding: 13px;
+        font-family: 'poppins', sans-serif;
+        color: rgba(0, 0, 0, 0.6);
+        outline: none;
+        border: 1px solid rgba(0, 0, 0, .2);
+        border-radius: 5px;
+        display: block;
+    }
+
+    .formContent .fas{
+        position: absolute;
+        top: 43px;
+        right: -10px;
+        display: none;
+    }
+
+    .formContent small{
+        font-family: "poppins", sans-serif;
+        position: absolute;
+        left: -230px;
+        top: 33px;
+        display: none;
+    }
+
+    .formContent:nth-child(2).error small{
+        position: absolute;
+        left: -207px;
+        top: 33px;
+    }
+
+    button{
+        background: #2b2684;
+        outline: none;
+        border: 0;
+        border-radius: 4px;
+        color: white;
+        font-family: "poppins", sans-serif;
+        padding: 10px 15px;
+        width: 148px;
+        position: relative;
+        top: 20px;
+        left: 150px;
+        cursor: pointer;
+    }
+
+    .formContent.success input{
+        border: 1px solid #4CAF50;
+    }
+
+    .formContent.success .fa-check-circle{
+        display: block;
+        color: #4CAF50;
+    }
+
+    .formContent.error input{
+        border: 1px solid #C62828;
+        color: rgba(200, 50, 20, 0.8);
+    }
+
+    .formContent.error .fa-times-circle{
+        display: block;
+        color: #C62828;
+    }
+
+    .formContent.error small{
+        display: block;
+        color: white;
+        padding: 10px 10px;
+        background: #E53935;
+        border-radius: 4px;
+    }
+
+    .formContent.error small::after{
+        content: "";
+        position: absolute;
+        right: -10px;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        border-left: 15px solid #E53935;
+    }
+
+    @media screen and (max-width: 512px) {
+        .container{
+            transform: scale(0.8);
+        }
+    }
+
+    @media screen and (max-height: 730px) {
+        .container{
+            transform: scale(0.8);
+        }
+    }
+
+</style>
+<body>
+
+<div class="container">
+    <div class="header-title">
+        <h2>REGISTER</h2>
+    </div>
+    <form id="ella" action="/saveUser" method="post" th:object="${userRequest}">
+        <div class="formContent">
+            <label>First Name </label>
+            <input type="text" id="fname" name="fName" placeholder="firstname">
+            <i class=" fas fa-check-circle"></i>
+            <i class=" fas fa-times-circle"></i>
+
+        </div>
+
+        <div class="formContent">
+            <label>Last name</label>
+            <input type="text" id="lname" name="lName" placeholder="lastname">
+            <i class=" fas fa-check-circle"></i>
+            <i class=" fas fa-times-circle"></i>
+        </div>
+        <div class="formContent">
+            <label>National Id</label>
+            <input type="text" id="nationalId" name="nationalId" placeholder="National Id">
+            <i class=" fas fa-check-circle"></i>
+            <i class=" fas fa-times-circle"></i>
+
+        </div>
+        <div class="formContent">
+            <label>Address</label>
+            <input type="text" id="address" name="address" placeholder="Address">
+            <i class=" fas fa-check-circle"></i>
+            <i class=" fas fa-times-circle"></i>
+
+        </div>
+        <div class="formContent">
+            <label>social status</label>
+            <input type="text" id="socialStatus" name="socialStatus" placeholder="socialstatus">
+            <i class=" fas fa-check-circle"></i>
+            <i class=" fas fa-times-circle"></i>
+
+        </div>
+        <div class="formContent">
+            <label>HeadOfFamily</label>
+            <input type="text" id="headofFamily" name="headOfFamily" placeholder="headoffamily">
+            <i class=" fas fa-check-circle"></i>
+            <i class=" fas fa-times-circle"></i>
+
+        </div>
+        <div class="formContent">
+            <label>PhoneNumber</label>
+            <input type="text" id="phoneNumber" name="phoneNumber" placeholder="phonenumber">
+            <i class=" fas fa-check-circle"></i>
+            <i class=" fas fa-times-circle"></i>
+
+        </div>
+        <div class="formContent">
+            <label>Email</label>
+            <input type="text" id="email" name="email" placeholder="email">
+            <i class=" fas fa-check-circle"></i>
+            <i class=" fas fa-times-circle"></i>
+
+        </div>
+        <button type="submit">Create</button>
+
+    </form>
+</div>
+</body>
+<script>
+    const form = document.getElementById("form")
+    const username = document.getElementById("username")
+    const email = document.getElementById("email")
+    const password = document.getElementById("password")
+    const password2 = document.getElementById("password2")
+
+    form.addEventListener("submit", (e) =>{
+        e.preventDefault();
+
+        verifInputs();
+    })
+
+    function verifInputs() {
+        const usernameValue = username.value
+        const emailValue = email.value
+        const passwordValue = password.value
+        const password2Value = password2.value
+
+        if(usernameValue === ''){
+            ErrorMessage(username, 'Username can not be empty');
+        } else {
+            successMessage(username)
+        }
+
+        if(emailValue === ''){
+            ErrorMessage(email, 'Email can not be empty');
+        } else {
+            successMessage(email)
+        }
+
+        if(passwordValue === ''){
+            ErrorMessage(password, 'Password can not be empty');
+        } else {
+            successMessage(password)
+        }
+
+        if(password2Value === ''){
+            ErrorMessage(password2, 'password can not be empty');
+        } else if (passwordValue !== password2Value){
+            ErrorMessage(password2, "Passwords does not match")
+        } else {
+            successMessage(password2)
+        }
+    }
+
+    function ErrorMessage(input, message) {
+        const formContent = input.parentElement
+        const small = formContent.querySelector("small")
+
+        small.innerText = message;
+
+        formContent.className = "formContent error"
+    }
+
+    function successMessage (input) {
+        const formContent = input.parentElement
+
+        formContent.className = "formContent success"
+    }
+</script>
+</html>

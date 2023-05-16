@@ -1,0 +1,284 @@
+@import "compass";
+
+$list: hairwhips dance audrey coding about;
+$panel_title_color: #f6f6f6;
+$titles: film theater music code;
+$panel-desc-colors: rgba(255, 140, 0, 0.7) rgba(91, 190, 251, 0.7) rgba(165, 42, 42, 0.7) rgba(60, 179, 113, 0.7);
+
+$break-small: 450px;
+$break-large: 1199px;
+
+@mixin respond-to($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+  }
+  @else if $media == wide-screens {
+    @media only screen and (min-width: $break-large) { @content; }
+  }
+}
+
+@each $author in $list {
+  .photo-#{$author} {
+    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/283809/#{$author}.jpg") no-repeat center center;
+    background-size: cover;
+    z-index: 45;
+  }
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: grey;
+  min-width:350px;
+
+  @include respond-to(wide-screens){
+    overflow: hidden;
+    overflow-x:hidden;
+    overflow-y:hidden
+  }
+}
+
+.container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.row{
+  margin:0;
+  height:100%;
+}
+
+.container.home{
+  overflow-x: hidden;
+  overflow:hidden;
+  height:100vh;
+}
+
+// .active{background-color: #ddca92 !important;}
+
+.home .col-lg-3, .home .col-lg-12 {
+  margin: 0;
+  padding: 0;
+  height: calc(100% + 900px);
+  overflow: hidden;
+}
+
+.home .col-lg-3 {
+  height: 100%;
+}
+
+.photo {
+  z-index: 0;
+  top: 0px;
+  background-size: cover;
+  height: calc(100% + 50px) !important;
+  width: calc(100% + 50px);
+  overflow: hidden;
+  z-index: 3;
+  position: absolute;
+}
+
+.photo {
+  animation: frameani 2s ease-in-out infinite alternate;
+  overflow: hidden;
+  transition: all 1s;
+  transition-timing-function: linear;
+  transition-delay: 0s;
+  top: 0;
+}
+
+.perspective-container {
+  perspective: 20em;
+  height: 100%;
+  transform-style: preserve-3d;
+
+  @include respond-to(wide-screens){
+    overflow: hidden;
+  }
+}
+
+.picture-title {
+  position: absolute;
+  top: 10px;
+  left: 50px;
+  z-index: 30;
+  text-align: center;
+  font-size: 27px;
+  letter-spacing: 0.4em;
+  font-weight: 100;
+  cursor: pointer;
+}
+
+.panel-description {
+  display: none;
+  position: absolute;
+  z-index: 4;
+  width: 300px;
+  top: 10px;
+  padding-top: 30px;
+  margin: 10px;
+
+  p{
+    color:#ddd;
+  }
+
+
+  .description-content {
+    padding: 17px 30px 30px 40px;
+    font-weight: 100;
+    letter-spacing: 0.05em;
+    text-shadow: none !important;
+  }
+
+  a.info {
+    display: inline-block;
+    text-decoration: none;
+    padding: 7px 14px;
+    font-weight: 200;
+    margin-top: 20px;
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  @include respond-to(handhelds){
+    width: 70%;
+    height: 80%;
+    font-size: 80%;
+  }
+}
+
+.hide-photo-filter {
+  display: none;
+  position: relative;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 50;
+  width: 100%;
+  height: 100%;
+}
+
+.show-photo-filter {
+
+  @include respond-to(wide-screens){
+    display: block;
+  }
+
+}
+
+/* Home Page Animation for panels */
+
+@for $i from 1 through length($titles) {
+
+  $item: nth($titles, $i);
+  $pcol: nth($panel-desc-colors, $i);
+
+  /* Generates animations for cascading tiles */
+
+  .picture-#{$item} {
+    -webkit-animation-delay: #{$i * 0.3s};
+    -moz-animation-delay: #{$i * 0.3s};
+    animation-delay: #{$i * 0.3s};
+    color: $panel_title_color;
+  }
+
+  /* Generates different colors for panel descriptions */
+
+  .#{$item}-panel {
+    cursor: pointer;
+    .panel-description {
+      background-color: $pcol;
+      text-align: left;
+      p{
+        @include respond-to(handhelds){
+          font-weight: 300
+        }
+      }
+    }
+
+    @include respond-to(handhelds){
+      .panel-description{
+        display:block
+      }
+    }
+
+    &:hover {
+      .panel-description {
+        display: block;
+      }
+
+      .hide-photo-filter {
+        @extend .show-photo-filter;
+      }
+
+    }
+  }
+}
+
+.mobile-buttons{
+
+  @include respond-to(wide-screens){
+    display:none
+  }
+  position: absolute;
+  top:40%; right:15px;
+  z-index:33333;
+
+  a{
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    background-color:rgba(255,255,255,0.2);
+    margin:10px;
+    box-shadow: 1px 1px 1px rgba(1, 1, 1, 0.2);
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    text-align:center;
+    display:block;
+  }
+}
+
+
+.mobile-buttons a span {
+  display:block;
+  width: 15px;
+  background-color:white;
+  height:1px;
+  position:relative;
+  margin: 0 auto;
+}
+
+.next{
+  span:nth-of-type(1){
+    -ms-transform: rotate(40deg);
+    -webkit-transform: rotate(40deg);
+    transform: rotate(40deg);
+    top:16px;
+  }
+  span:nth-of-type(2){-ms-transform: rotate(40deg);
+    -webkit-transform: rotate(-40deg);
+    transform: rotate(-40deg);
+    top:25px;
+  }
+
+}
+
+.previous{
+  @extend .next;
+  -ms-transform: scale(-1);
+  -webkit-transform: scale(-1);
+  transform: scale(-1)
+}
+
+.info.hvr-underline-from-left:before {
+  background-color: #f6f6f6;
+  height: 2.5px;
+}

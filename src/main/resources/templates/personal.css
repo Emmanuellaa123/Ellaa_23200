@@ -1,0 +1,145 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,400i,700");
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600,700|Source+Sans+Pro:400,600,700&display=swap");
+
+body{
+    background: rgba(200, 200, 255, 0.2);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.container{
+    background: white;
+    box-shadow: rgba(0, 0, 0, .2) 0 0 20px;
+    width: 500px;
+    max-width: 100%;
+    height: 1000px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.header-title{
+    background: blue;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    padding: 10px;
+    text-align: center;
+    font-family: "Source Sans Pro", sans-serif;
+    color: rgba(255, 255, 255, .9);
+}
+
+#form{
+    padding: 60px 80px 40px 70px;
+}
+
+.formContent{
+    margin: 0 0 25px 0;
+    position: relative;
+}
+
+.formContent label{
+    font-family: Montserrat, sans-serif;
+    display: inline-block;
+    margin: 0 0 8px 0;
+}
+
+.formContent input{
+    background: none;
+    width: 100%;
+    padding: 13px;
+    font-family: 'poppins', sans-serif;
+    color: rgba(0, 0, 0, 0.6);
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 5px;
+    display: block;
+}
+
+.formContent .fas{
+    position: absolute;
+    top: 43px;
+    right: -10px;
+    display: none;
+}
+
+.formContent small{
+    font-family: "poppins", sans-serif;
+    position: absolute;
+    left: -230px;
+    top: 33px;
+    display: none;
+}
+
+.formContent:nth-child(2).error small{
+    position: absolute;
+    left: -207px;
+    top: 33px;
+}
+
+button{
+    background: blue;
+    outline: none;
+    border: 0;
+    border-radius: 4px;
+    color: white;
+    font-family: "poppins", sans-serif;
+    padding: 15px 0;
+    width: 105%;
+    position: relative;
+    top: 20px;
+    left: 5px;
+    cursor: pointer;
+}
+
+.formContent.success input{
+    border: 1px solid #4CAF50;
+}
+
+.formContent.success .fa-check-circle{
+    display: block;
+    color: #4CAF50;
+}
+
+.formContent.error input{
+    border: 1px solid #C62828;
+    color: rgba(200, 50, 20, 0.8);
+}
+
+.formContent.error .fa-times-circle{
+    display: block;
+    color: #C62828;
+}
+
+.formContent.error small{
+    display: block;
+    color: white;
+    padding: 10px 10px;
+    background: #E53935;
+    border-radius: 4px;
+}
+
+.formContent.error small::after{
+    content: "";
+    position: absolute;
+    right: -10px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 15px solid #E53935;
+}
+
+@media screen and (max-width: 512px) {
+    .container{
+        transform: scale(0.8);
+    }
+}
+
+@media screen and (max-height: 730px) {
+    .container{
+        transform: scale(0.8);
+    }
+}
